@@ -1,0 +1,66 @@
+:root { --bg:#f5f6f9; --cobalt:#1b3a8c; --cobalt-dark:#12275f; --teal:#17a2a0; --ink:#101b3b; --line:#dde2ee; --amber:#d98324; }
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; }
+body { background: var(--bg); color: var(--ink); font: 16px/1.55 system-ui, "Segoe UI", sans-serif; }
+button, input, textarea { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--teal); outline-offset: 2px; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+.app { display: grid; grid-template-columns: 320px 1fr; height: 100%; }
+aside { background: var(--cobalt); color: #fff; padding: 26px 22px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; }
+aside h1 { font-size: 26px; line-height: 1.15; margin: 0 0 6px; }
+aside h2 { font-size: 15px; margin: 18px 0 8px; color: #bfeceb; }
+.sub { margin: 0; color: #d5defa; font-size: 15px; }
+aside ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; }
+aside li button { width: 100%; text-align: left; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.25); color: #fff; padding: 9px 12px; border-radius: 6px; cursor: pointer; font-size: 15px; }
+aside li button:hover:not(:disabled) { background: rgba(255,255,255,.22); }
+aside li button:disabled { opacity: .5; cursor: default; }
+.health { margin: auto 0 0; padding-top: 16px; font-size: 14px; color: #d5defa; }
+.source { margin: 8px 0 0; font-size: 13px; color: #aebbe6; }
+
+main { display: flex; flex-direction: column; min-width: 0; height: 100%; }
+.stream { flex: 1; overflow-y: auto; padding: 26px clamp(16px, 5vw, 56px); display: flex; flex-direction: column; gap: 18px; }
+.empty { margin: auto; text-align: center; max-width: 32ch; font-size: 22px; font-weight: 600; }
+.empty p { margin: 0 0 6px; } .hint { font-size: 15px; font-weight: 400; color: #55608a; }
+.msg { max-width: min(740px, 100%); }
+.msg p { margin: 0; white-space: pre-wrap; }
+.msg.user { align-self: flex-end; background: var(--cobalt); color: #fff; padding: 10px 14px; border-radius: 14px 14px 3px 14px; }
+.msg.assistant { align-self: flex-start; border-left: 3px solid var(--teal); padding: 2px 0 2px 16px; }
+.msg.error { border-left-color: var(--amber); }
+.wait { color: #55608a; }
+.warn { margin-top: 8px !important; font-size: 14px; color: #8a4a0c; background: #fdf1e2; padding: 6px 10px; border-radius: 6px; }
+
+.chart { margin: 12px 0 4px; padding: 12px 12px 4px; background: #fff; border: 1px solid var(--line); border-radius: 8px; }
+.chart figcaption { font-weight: 600; font-size: 15px; margin: 0 0 6px 4px; }
+
+.tools { margin-top: 10px; font-size: 13px; color: #55608a; }
+.tools summary { cursor: pointer; width: fit-content; }
+.tools code { display: block; margin-top: 4px; background: #e9edf7; padding: 3px 8px; border-radius: 4px; overflow-x: auto; }
+
+.feedback { margin-top: 8px; }
+.feedback-buttons { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
+.feedback-buttons button { background: #fff; border: 1px solid var(--line); border-radius: 6px; padding: 3px 10px; cursor: pointer; font-size: 16px; }
+.feedback-buttons button.on { border-color: var(--teal); background: #e2f5f4; }
+.note { font-size: 13px; color: #3b6f6e; } .note.err { color: #a8461b; }
+.why { display: grid; gap: 8px; max-width: 520px; margin-top: 8px; }
+.why p { margin: 0; font-size: 14px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { background: #fff; border: 1px solid var(--line); border-radius: 999px; padding: 3px 12px; cursor: pointer; font-size: 14px; }
+.chip.on { background: var(--cobalt); color: #fff; border-color: var(--cobalt); }
+.why label { font-size: 14px; }
+.why textarea { border: 1px solid var(--line); border-radius: 6px; padding: 8px; resize: vertical; background: #fff; }
+.send { justify-self: start; background: var(--cobalt); color: #fff; border: 0; border-radius: 6px; padding: 7px 16px; cursor: pointer; }
+.send:disabled { opacity: .45; cursor: default; }
+
+.composer { display: flex; gap: 10px; padding: 14px clamp(16px, 5vw, 56px) 20px; border-top: 1px solid var(--line); background: #fff; }
+.composer input { flex: 1; min-width: 0; border: 1px solid #c3cbe0; border-radius: 8px; padding: 11px 14px; background: var(--bg); }
+.composer button { background: var(--cobalt); color: #fff; border: 0; border-radius: 8px; padding: 0 22px; cursor: pointer; font-weight: 600; }
+.composer button:disabled { opacity: .45; cursor: default; }
+
+@media (max-width: 820px) {
+  .app { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+  aside { max-height: 36vh; padding: 14px; }
+  aside h1 { font-size: 20px; } .sub, .source { display: none; }
+  aside ul { grid-auto-flow: column; grid-auto-columns: max-content; overflow-x: auto; padding-bottom: 6px; }
+  aside li button { white-space: nowrap; }
+}
